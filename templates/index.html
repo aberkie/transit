@@ -1,0 +1,31 @@
+{% extends "_layouts/cp" %}
+
+{% set title = "Transit Plugin" %}
+
+{% set content %}
+	<h2>API Key Information</h2>
+	<p>To use this plugin, you must register for an API key at <a href="https://developer.wmata.com">https://developer.wmata.com</a>.</p>
+	{% set value = "" %}
+	{% set service = "" %}
+	{% from "_includes/forms" import text %}
+	{% set values = craft.transit.getKey() %}
+	{% if values|length %}
+		{% set value = values[0].api_key %}
+		{% set service = values[0].service %}
+	{% endif %}
+	
+	<form method="post" action="">
+		<input type="hidden" name="action" value="transit/settings/savekey">
+		<input type="hidden" name="service" value="{{service}}" />
+		<div class="heading"><label for="api_key">Your API Key</label></div>
+		<input id="api_key" name="api_key" type="text" class="text" size="75" value="{{value}}" />
+		<p><input class="btn submit" type="submit" value="{{ 'Save Key'|t }}"></p>
+	</form>
+	
+	<h2>Refresh Stations</h2>
+	<p>To update the stations in the database with the most up-to-date station information from WMATA, click Refresh Stations.</p>
+	<form method="post" action="">
+		<input type="hidden" name="action" value="transit/stations/refreshstations">
+		<input class="btn submit" type="submit" value="{{ 'Refresh Stations'|t }}">
+	</form>
+{% endset %}
