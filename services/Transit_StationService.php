@@ -136,7 +136,14 @@ class Transit_StationService extends BaseApplicationComponent
 			return false;
 		} else {
 			curl_close($ch);
-			return json_decode($result, true);
+			$json = json_decode($result, true);
+			
+			if(isset($json['statusCode']))
+			{
+				return false;
+			} else {
+				return $json
+			}
 		}
 	}
 }
