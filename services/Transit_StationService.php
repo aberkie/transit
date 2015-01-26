@@ -58,11 +58,6 @@ class Transit_StationService extends BaseApplicationComponent
 		$method = "jStations";
 		$stations = $this->call($service, $method);
 		
-		if(isset($stations['statusCode']))
-		{
-			return false;
-		}
-		
 		$stations = $stations['Stations'];
 		
 		$new_stations = array();
