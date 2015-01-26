@@ -1,0 +1,8 @@
+{% if incidents|length > 0 %}
+	{% for incident in incidents %}
+		<h3>{{incident['IncidentType']}}</h3>
+		<p>{{incident['Description']}}</p>
+	{% endfor %}
+{% else %}
+	<p>There are no reported incidents.</p>
+{% endif %}
