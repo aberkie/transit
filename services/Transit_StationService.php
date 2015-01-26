@@ -6,9 +6,6 @@ class Transit_StationService extends BaseApplicationComponent
 {
 	
 	protected $transitRecord;
-	protected $API_KEY;
-	
-	protected $default_service = "WMATA";
 	
 	public function __construct($transitRecord = null)
 	{
@@ -16,11 +13,6 @@ class Transit_StationService extends BaseApplicationComponent
 		{
 			$this->transitRecord = Transit_StationRecord::model();
 		}
-		
-		$api_key = craft()->transit_key->getKey($this->default_service);
-		
-		$this->API_KEY = $api_key;
-		
 	}
 	
 	public function getAllStations()
@@ -41,7 +33,7 @@ class Transit_StationService extends BaseApplicationComponent
 		$cache = craft()->cache->get($cache_key);
 		if(! $cache)
 		{
-			$next_trains = $this->call($service, $method);
+			$next_trains = craft()->transit_api->call($service, $method);
 			$return = $next_trains['Trains'];
 			craft()->cache->set("getNextTrain_$station_code", $return, 30);
 		} else {
@@ -56,7 +48,7 @@ class Transit_StationService extends BaseApplicationComponent
 	{
 		$service = "Rail";
 		$method = "jStations";
-		$stations = $this->call($service, $method);
+		$stations = craft()->transit_api->call($service, $method);
 		
 		$stations = $stations['Stations'];
 		
@@ -105,40 +97,5 @@ class Transit_StationService extends BaseApplicationComponent
 			craft()->db->createCommand()->insert('transit_stations', $station);
 		}
 		return true;
-	}
-	
-	private function call($service, $method, $params = null)
-	{
-		$base = "https://api.wmata.com/$service.svc/json/";
-		$key = $this->API_KEY;
-		$key_string = "api_key=$key";
-		
-		$url = $base.$method."?".$key_string;
-						
-		//  Initiate curl
-		$ch = curl_init();
-		// Disable SSL verification
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		// Will return the response, if false it print the response
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		// Set the url
-		curl_setopt($ch, CURLOPT_URL,$url);
-		// Execute
-		$result = curl_exec($ch);
-		if($result === false)
-		{
-			curl_close($ch);
-			return false;
-		} else {
-			curl_close($ch);
-			$json = json_decode($result, true);
-			
-			if(isset($json['statusCode']))
-			{
-				return false;
-			} else {
-				return $json;
-			}
-		}
 	}
 }
