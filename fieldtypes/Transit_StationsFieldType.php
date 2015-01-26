@@ -6,7 +6,7 @@ class Transit_StationsFieldType extends BaseFieldType
 {
 	public function getName()
 	{
-		return Craft::t('Transit Stations');
+		return Craft::t('Metro Stations');
 	}
 	
 	public function defineContentAttribute()
