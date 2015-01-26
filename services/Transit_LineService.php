@@ -25,10 +25,21 @@ class Transit_LineService extends BaseApplicationComponent
 	{
 		$service = "Incidents";
 		$method = "Incidents";
+		$cache_key = "railIncidents";
 		
-		$incidents = craft()->transit_api->call($service, $method);
-		$incidents = $incidents['Incidents'];
-		return $incidents;
+		$return = "";
+		$cache = craft()->cache->get($cache_key);
+		if(! $cache)
+		{
+			$incidents = craft()->transit_api->call($service, $method);
+			$return = $incidents['Incidents'];
+			craft()->cache->set($cache_key, $return, 3600);
+		} else {
+			$return = craft()->cache->get($cache_key);
+		}
+		
+		return $return;
+
 	}
 	
 	public function installLines()

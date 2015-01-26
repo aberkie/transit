@@ -35,7 +35,7 @@ class Transit_StationService extends BaseApplicationComponent
 		{
 			$next_trains = craft()->transit_api->call($service, $method);
 			$return = $next_trains['Trains'];
-			craft()->cache->set("getNextTrain_$station_code", $return, 30);
+			craft()->cache->set($cache_key, $return, 30);
 		} else {
 			$return = craft()->cache->get($cache_key);
 		}
