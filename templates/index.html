@@ -28,4 +28,11 @@
 		<input type="hidden" name="action" value="transit/stations/refreshstations">
 		<input class="btn submit" type="submit" value="{{ 'Refresh Stations'|t }}">
 	</form>
+
+	<h2>Refresh Lines</h2>
+	<p>To update the lines in the database with the most up-to-date station information from WMATA, click Refresh Lines.</p>
+	<form method="post" action="">
+		<input type="hidden" name="action" value="transit/lines/refreshlines">
+		<input class="btn submit" type="submit" value="{{ 'Refresh Lines'|t }}">
+	</form>
 {% endset %}
