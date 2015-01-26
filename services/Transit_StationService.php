@@ -25,7 +25,7 @@ class Transit_StationService extends BaseApplicationComponent
 	
 	public function getAllStations()
 	{
-		$records = $this->transitRecord->findAll();
+		$records = $this->transitRecord->findAll(array('order'=>'name'));
 		
 		return Transit_StationModel::populateModels($records);
 	}
@@ -137,7 +137,7 @@ class Transit_StationService extends BaseApplicationComponent
 			{
 				return false;
 			} else {
-				return $json
+				return $json;
 			}
 		}
 	}
