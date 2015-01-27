@@ -22,6 +22,21 @@ class Transit_StationService extends BaseApplicationComponent
 		return Transit_StationModel::populateModels($records);
 	}
 
+	public function getStationInformation($station_code)
+	{
+		$condition = "Code = '$station_code'";
+		$record = $this->transitRecord->find($condition);
+		
+		if($record)
+		{
+			$model = Transit_StationModel::populateModel($record);
+			return $model;
+		} else {
+			return false;
+		}
+		
+	}
+
 	public function getNextTrains($station_code)
 	{
 		$service = "StationPrediction";
@@ -71,21 +86,21 @@ class Transit_StationService extends BaseApplicationComponent
 			$station_name = $station['Name']." ($line_str)";
 			
 			$new_stations[] = array(
-				'address_city' => $station['Address']['City'],
-				'address_state' => $station['Address']['State'],
-				'address_street' => $station['Address']['Street'],
-				'address_zip' => $station['Address']['Zip'],
-				'code' => $station['Code'],
-				'display_name' => $station_name,
-				'lat' => $station['Lat'],
-				'line_code_1' => $station['LineCode1'],
-				'line_code_2' => $station['LineCode2'],
-				'line_code_3' => $station['LineCode3'],
-				'line_code_4' => $station['LineCode4'],
-				'lon' => $station['Lon'],
-				'name' => $station['Name'],
-				'station_together_1' => $station['StationTogether1'],
-				'station_together_2' => $station['StationTogether2']
+				'Address_City' => $station['Address']['City'],
+				'Address_State' => $station['Address']['State'],
+				'Address_Street' => $station['Address']['Street'],
+				'Address_zip' => $station['Address']['Zip'],
+				'Code' => $station['Code'],
+				'Display_Name' => $station_name,
+				'Lat' => $station['Lat'],
+				'LineCode1' => $station['LineCode1'],
+				'LineCode2' => $station['LineCode2'],
+				'LineCode3' => $station['LineCode3'],
+				'LineCode4' => $station['LineCode4'],
+				'Lon' => $station['Lon'],
+				'Name' => $station['Name'],
+				'StationTogether1' => $station['StationTogether1'],
+				'StationTogether2' => $station['StationTogether2']
 			);
 		}		
 		
