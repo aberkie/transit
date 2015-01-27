@@ -69,7 +69,7 @@ Results are cached for 30 seconds to reduce the number of API calls.
 
 `{% set predictions = craft.transit.getNextTrains(entry.metroStation) %}`
 
-`% for prediction in predictions %}`
+`{% for prediction in predictions %}`
 
 `<p>{{prediction['Line']}} to {{prediction['Destination']}} in {{prediction['Min']}} Minutes</p>`
 	
