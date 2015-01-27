@@ -38,7 +38,7 @@ Located at 1525 20th St. NW in Washington, DC
 
 `% for prediction in predictions %}`
 
-	`<p>{{prediction['Line']}} to {{prediction['Destination']}} in {{prediction['Min']}} Minutes</p>`
+`<p>{{prediction['Line']}} to {{prediction['Destination']}} in {{prediction['Min']}} Minutes</p>`
 	
 `{% endfor %}`
 
