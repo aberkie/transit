@@ -12,5 +12,12 @@ Craft CMS Plugin for use with WMATA API.
 
 
 ## Field Types
-Transit comes with two Field Types, one for stations and one for lines. Use them as you would any other field in Craft on any entry type.
+Transit comes with two Field Types, Metro Stations and Metro Lines. Use them as you would any other field in Craft on any entry type.
 ![New field view](/resources/screenshots/new_field.jpg?raw=true "Create a new field")
+
+## Uses
+In an entry template that contains a Metro Station field, use Transit to get station information and real-time next train predictions.
+
+### getStationInformation(station_code)
+
+`{% set station_information = craft.transit.getStationInformation(entry.yourMetroStationFieldHandle) %}`
