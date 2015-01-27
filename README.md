@@ -21,3 +21,10 @@ In an entry template that contains a Metro Station field, use Transit to get sta
 ### getStationInformation(stationCode)
 
 `{% set stationInformation = craft.transit.getStationInformation(entry.yourMetroStationFieldHandle) %}`
+`<h4>{{stationInformation.Name}}</h4>`
+`<p>Located at {{stationInformation.Address_Street}} in {{stationInformation.Address_City}}, {{stationInformation.Address_State}}</p>`
+
+For a Metro Station field with Dupont Circle selected, the above code will render:
+
+#### Dupont Circle
+Located at 1525 20th St. NW in Washington, DC
