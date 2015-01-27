@@ -41,14 +41,11 @@ Available fields and descriptions*:
 
 `{% set stationInformation = craft.transit.getStationInformation(entry.yourMetroStationFieldHandle) %}`
 
-`<h4>{{stationInformation.Name}}</h4>`
-
-`<p>Located at {{stationInformation.Address_Street}} in {{stationInformation.Address_City}}, {{stationInformation.Address_State}}</p>`
+`<p><strong>{{stationInformation.Name}}</strong> - Located at {{stationInformation.Address_Street}} in {{stationInformation.Address_City}}, {{stationInformation.Address_State}}.</p>`
 
 For a Metro Station field with Dupont Circle selected, the above code will render:
 
-#### Dupont Circle
-Located at 1525 20th St. NW in Washington, DC
+**Dupont Circle** - Located at 1525 20th St. NW in Washington, DC.
 
 
 ### getNextTrainPredictions(stationCode)
