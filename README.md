@@ -49,7 +49,23 @@ For a Metro Station field with Dupont Circle selected, the above code will rende
 
 
 ### getNextTrains(stationCode)
-Use this function go get real-time train predictions from WMATA. The responses are cached for 30 seconds to save reduce the number of API calls.
+Use this function go get real-time train predictions from WMATA. 
+An array of train predictions is returned with the following fields per prediction*:
+
+* Car - Number of cars on a train, usually 6 or 8, but might also return - or NULL.
+* Destination - Abbreviated version of the final destination for a train. This is similar to what is displayed on the signs at stations.
+* DestinationCode - Destination station code. Can be NULL. Use this value in other rail-related APIs to retrieve data about a station.
+* DestinationName - When DestinationCode is populated, this is the full name of the destination station, as shown on the WMATA website.
+* Group - Denotes the track this train is on, but does not necessarily equate to Track 1 or Track 2. With the exception of terminal stations, predictions at the same station with different Group values refer to trains on different tracks.
+* Line - Two-letter abbreviation for the line (e.g.: RD, BL, YL, OR, GR, or SV). May also be blank or No for trains with no passengers.
+* LocationCode - Station code for where the train is arriving. Use this value in other rail-related APIs to retrieve data about a station.
+* LocationName - Full name of the station where the train is arriving. Useful when passing in All as the StationCodes parameter.
+* Min - Minutes until arrival. Can be a numeric value, ARR (arriving), BRD (boarding), or ---.
+
+*Descriptions taken from [WMATA API Documentation](https://developer.wmata.com/docs/services/547636a6f9182302184cda78/operations/547636a6f918230da855363f).
+
+Results are cached for 30 seconds to reduce the number of API calls.
+
 
 `{% set predictions = craft.transit.getNextTrains(entry.metroStation) %}`
 
