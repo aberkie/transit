@@ -1,6 +1,6 @@
 <select name="{{ name }}" id="{{ name }}">
 	<option value=""></option>
 	{% for option in options %}
-		<option value="{{ option.Code }}" {% if value == option.Code %} selected{% endif %}>{{ option.Name }}</option>
+		<option value="{{ option.Code }}" {% if value == option.Code %} selected{% endif %}>{{ option.Display_Name }}</option>
 	{% endfor %}
 </select>
