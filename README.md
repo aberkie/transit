@@ -48,7 +48,8 @@ For a Metro Station field with Dupont Circle selected, the above code will rende
 **Dupont Circle** - Located at 1525 20th St. NW in Washington, DC.
 
 
-### getNextTrainPredictions(stationCode)
+### getNextTrains(stationCode)
+Use this function go get real-time train predictions from WMATA. The responses are cached for 30 seconds to save reduce the number of API calls.
 
 `{% set predictions = craft.transit.getNextTrains(entry.metroStation) %}`
 
@@ -58,7 +59,7 @@ For a Metro Station field with Dupont Circle selected, the above code will rende
 	
 `{% endfor %}`
 
-The above code will make an API call to WMATA and return back real-time predictions, rendering: 
+The above code will render: 
 
 RD to Grsvnor in 3 Minutes
 
