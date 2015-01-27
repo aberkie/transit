@@ -17,7 +17,7 @@ class Transit_StationService extends BaseApplicationComponent
 	
 	public function getAllStations()
 	{
-		$records = $this->transitRecord->findAll(array('order'=>'name'));
+		$records = $this->transitRecord->findAll(array('order'=>'Name'));
 		
 		return Transit_StationModel::populateModels($records);
 	}

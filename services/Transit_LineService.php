@@ -16,7 +16,7 @@ class Transit_LineService extends BaseApplicationComponent
 	
 	public function getAllLines()
 	{
-		$lines = $this->lineRecord->findAll(array('order'=>'display_name'));
+		$lines = $this->lineRecord->findAll(array('order'=>'DisplayName'));
 		
 		return Transit_LineModel::populateModels($lines);
 	}
