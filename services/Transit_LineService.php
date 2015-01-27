@@ -55,12 +55,12 @@ class Transit_LineService extends BaseApplicationComponent
 		foreach($lines as $line)
 		{
 			$new_lines[] = array(
-				'display_name' => $line['DisplayName'],
-				'end_station_code' => $line['EndStationCode'],
-				'internal_destination_1' => $line['InternalDestination1'],
-				'internal_destination_2' => $line['InternalDestination2'],
-				'line_code' => $line['LineCode'],
-				'start_station_code' => $line['StartStationCode']
+				'DisplayName' => $line['DisplayName'],
+				'EndStationCode' => $line['EndStationCode'],
+				'InternalDestination1' => $line['InternalDestination1'],
+				'InternalDestination2' => $line['InternalDestination2'],
+				'LineCode' => $line['LineCode'],
+				'StartStationCode' => $line['StartStationCode']
 			);
 		}
 		
