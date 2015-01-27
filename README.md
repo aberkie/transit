@@ -18,6 +18,6 @@ Transit comes with two Field Types, Metro Stations and Metro Lines. Use them as 
 ## Uses
 In an entry template that contains a Metro Station field, use Transit to get station information and real-time next train predictions.
 
-### getStationInformation(station_code)
+### getStationInformation(stationCode)
 
-`{% set station_information = craft.transit.getStationInformation(entry.yourMetroStationFieldHandle) %}`
+`{% set stationInformation = craft.transit.getStationInformation(entry.yourMetroStationFieldHandle) %}`
