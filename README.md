@@ -19,6 +19,25 @@ Transit comes with two Field Types, Metro Stations and Metro Lines. Use them as 
 In an entry template that contains a Metro Station field, use Transit to get station information and real-time next train predictions.
 
 ### getStationInformation(stationCode)
+Station information is stored in the Craft database for performance and to save API calls, but the structure of the data just matches the [API structure](https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe3310), with the exception of the address fields.
+
+Available fields and descriptions*:
+* Address_City
+* Address_State
+* Address_Street
+* Address_Zip
+* Code - this represents the unique station code used throughout the WMATA API.
+* Lat - Latitude of station
+* LineCode1 - Two-letter abbreviation for the line (e.g.: RD, BL, YL, OR, GR, or SV) served by this station.
+* LineCode2 - Additional line served by this station. This is often the case when stations have multiple platforms (e.g.: Gallery Place, Fort Totten, L'Enfant Plaza, and Metro Center).
+* LineCode3 - Similar to function as LineCodeX.
+* LineCode4 - Similar to function as LineCodeX. Currently not in use.
+* Lon - Longitude of station
+* Name
+* StationTogether1 - For stations with multiple platforms (e.g.: Gallery Place, Fort Totten, L'Enfant Plaza, and Metro Center), the additional StationCode will be listed here.
+* StationTogether2 - Similar in function to StationTogether2. Currently not in use.
+
+*Descriptions taken from [WMATA API Documentation](https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe330c).
 
 `{% set stationInformation = craft.transit.getStationInformation(entry.yourMetroStationFieldHandle) %}`
 
