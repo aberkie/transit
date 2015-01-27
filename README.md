@@ -30,3 +30,7 @@ For a Metro Station field with Dupont Circle selected, the above code will rende
 
 #### Dupont Circle
 Located at 1525 20th St. NW in Washington, DC
+
+
+### getNextTrainPredictions(stationCode)
+{% set predictions = craft.transit.getNextTrains(entry.metroStation) %}
