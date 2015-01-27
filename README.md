@@ -33,4 +33,23 @@ Located at 1525 20th St. NW in Washington, DC
 
 
 ### getNextTrainPredictions(stationCode)
-{% set predictions = craft.transit.getNextTrains(entry.metroStation) %}
+
+`{% set predictions = craft.transit.getNextTrains(entry.metroStation) %}
+
+{% for prediction in predictions %}
+		<p>{{prediction['Line']}} to {{prediction['Destination']}} in {{prediction['Min']}} Minutes</p>
+{% endfor %}`
+
+The above code will make an API call to WMATA and return back real-time predictions, rendering: 
+
+RD to Grsvnor in 3 Minutes
+
+RD to Glenmont in 6 Minutes
+
+RD to Shady Gr in 7 Minutes
+
+RD to SilvrSpg in 10 Minutes
+
+RD to Grsvnor in 15 Minutes
+
+RD to Glenmont in 16 Minutes
