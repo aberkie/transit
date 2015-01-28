@@ -22,7 +22,21 @@ class Transit_ApiService extends BaseApplicationComponent
 		$key = $this->API_KEY;
 		$key_string = "api_key=$key";
 		
-		$url = $base.$method."?".$key_string;
+		if($params == null)
+		{
+			$url = $base.$method."?".$key_string;
+		} else {
+			
+			$url .= "?";
+			
+			foreach($params as $key=>$val)
+			{
+				$url .= $key."=".$val."&";
+			}
+			
+			$url .= $key_string;
+		}
+		
 						
 		//  Initiate curl
 		$ch = curl_init();

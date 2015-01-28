@@ -24,4 +24,9 @@ class TransitVariable
 	{
 		return craft()->transit_station->getStationInformation($station);
 	}
+	
+	public function getStationToStation($origin, $destination)
+	{
+		return craft()->transit_station->getStationToStation($origin, $destination);
+	}
 }

@@ -56,7 +56,33 @@ class Transit_StationService extends BaseApplicationComponent
 		}
 				
 		return $return;
+	}
+	
+	public function getStationToStation($origin, $destination)
+	{
+		$service = "Rail";
+		$method = "jSrcStationToDstStationInfo";
+		$params = array(
+			'FromStationCode' => $origin,
+			'ToStationCode' => $destination
+		);
 		
+		$cache_key = "getStationToStation_$origin"."_".$destination;
+		$return = "";
+		
+		$cache = craft()->cache->get($cache_key);
+		if(! $cache)
+		{
+			$info = craft()->transit_api->call($service, $method, $params);
+			$return = $info['StationToStationInfos'];
+			
+			//Cache for one month
+			craft()->cache->set($cache_key, $return, 2592000);
+		} else {
+			$return = craft()->cache->get($cache_key);
+		}
+		
+		return $return;
 	}
 
 	public function installStations()
