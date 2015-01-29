@@ -21,10 +21,10 @@ class Transit_ApiService extends BaseApplicationComponent
 		$base = "https://api.wmata.com/$service.svc/json/";
 		$key = $this->API_KEY;
 		$key_string = "api_key=$key";
-		
+		$url = $base.$method;
 		if($params == null)
 		{
-			$url = $base.$method."?".$key_string;
+			$url .= "?".$key_string;
 		} else {
 			
 			$url .= "?";
