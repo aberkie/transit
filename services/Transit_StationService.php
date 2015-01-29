@@ -82,6 +82,7 @@ class Transit_StationService extends BaseApplicationComponent
 			$return = craft()->cache->get($cache_key);
 		}
 		
+		$return = $return[0];
 		return $return;
 	}
 
