@@ -84,3 +84,35 @@ RD to Glenmont in 6 Minutes
 RD to Shady Gr in 7 Minutes
 
 RD to SilvrSpg in 10 Minutes
+
+
+###getStationToStation(origin_code, destination_code)
+Use this function to get the price and distance between two stations.
+An array of information will be returned with the following fields*:
+
+* CompositeMiles - Distance in miles from the source to destination station.
+* DestinationStation - Destination station code. Use this value in other rail-related APIs to retrieve data about a station.
+* RailFare - Array containing keys for prices (OffPeakTime, PeakTime, SeniorDisabled).
+* RailTime - Estimated travel time in minutes between the source and destination station.
+* SourceStation - Origin station code. Use this value in other rail-related APIs to retrieve data about a station.
+
+Results are cached for one month to reduce the number of API calls.
+
+`{% set origin_info = craft.transit.getStationInformation(entry.metroStationField1) %}`
+
+`{% set destination_info = craft.transit.getStationInformation(entry.metroStationField2) %}`
+
+`{% set info = craft.transit.getStationToStation(origin_info.Code, destination_info.Code) %}`
+
+`<p>It will take you {{info['RailTime']}} minutes to get from {{origin_info.Name}} to {{destination_info.Name}}</p>`
+
+`<p>Peak time cost: ${{info['RailFare']['PeakTime']|number_format(2, '.')}}</p>`
+
+The above code will render:
+
+It will take you 36 minutes to get from Greenbelt to Dupont Circle
+
+Peak time cost: $4.90
+
+
+*Some descriptions taken from [WMATA API Documentation](https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe3313).
