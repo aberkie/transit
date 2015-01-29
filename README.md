@@ -96,6 +96,8 @@ An array of information will be returned with the following fields*:
 * RailTime - Estimated travel time in minutes between the source and destination station.
 * SourceStation - Origin station code. Use this value in other rail-related APIs to retrieve data about a station.
 
+*Some descriptions taken from [WMATA API Documentation](https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe3313).
+
 Results are cached for one month to reduce the number of API calls.
 
 `{% set origin_info = craft.transit.getStationInformation(entry.metroStationField1) %}`
@@ -115,4 +117,3 @@ It will take you 36 minutes to get from Greenbelt to Dupont Circle
 Peak time cost: $4.90
 
 
-*Some descriptions taken from [WMATA API Documentation](https://developer.wmata.com/docs/services/5476364f031f590f38092507/operations/5476364f031f5909e4fe3313).
