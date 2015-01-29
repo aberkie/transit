@@ -11,7 +11,7 @@ class Transit_BusIncidentsWidget extends BaseWidget{
 	
 	public function getBodyHtml()
 	{
-		$incidents = craft()->transit_bus->getIncidents();
+		$incidents = craft()->transit_incidents->getBusIncidents();
 		return craft()->templates->render('transit/_widgets/bus_incidents', array(
 			'incidents' => $incidents
 		));
