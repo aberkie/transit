@@ -7,7 +7,8 @@
 	<p>To use this plugin, you must register for an API key at <a href="https://developer.wmata.com">https://developer.wmata.com</a>.</p>
 	{% set value = "" %}
 	{% set service = "" %}
-	{% from "_includes/forms" import text %}
+	{% from "_includes/forms" import textfield %}
+	{% from "_includes/forms" import  checkboxField %}
 	{% set values = craft.transit.getKey() %}
 	{% if values|length %}
 		{% set value = values[0].api_key %}
@@ -17,8 +18,14 @@
 	<form method="post" action="">
 		<input type="hidden" name="action" value="transit/settings/savekey">
 		<input type="hidden" name="service" value="{{service}}" />
-		<div class="heading"><label for="api_key">Your API Key</label></div>
-		<input id="api_key" name="api_key" type="text" class="text" size="75" value="{{value}}" />
+		{{textfield({
+			id: "api_key",
+			name: "api_key",
+			label: "Your API Key",
+			value: value,
+			size: 35
+		})}}
+
 		<p><input class="btn submit" type="submit" value="{{ 'Save Key'|t }}"></p>
 	</form>
 	
